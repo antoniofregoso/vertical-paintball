@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<odoo noupdate="1">
+
+    <!--Group for paintball user -->
+    <record id="group_paintball_user" model="res.groups">
+        <field name="name">Paintball Management / User</field>
+        <field eval="[(4, ref('base.user_root'))]" name="implied_ids" />
+    </record>
+
+    <!--Group for paintball manager -->
+    <record id="group_paintball_manager" model="res.groups">
+        <field name="name">Paintball Management/ Manager</field>
+        <field eval="[(4, ref('paintball.group_paintball_user'))]" name="implied_ids" />
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>
