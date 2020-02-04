@@ -18,6 +18,7 @@
         'security/paintball_security.xml',
         'security/ir.model.access.csv',
         'views/paintball_views.xml',
+        'data/paintball_sequence.xml',
     ],
 
     'demo': [

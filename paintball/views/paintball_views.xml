@@ -1,8 +1,6 @@
 <odoo>
 
-<odoo>
-
-    <menuitem id="paintball_management_menu" name="paintball Management" />
+    <menuitem id="paintball_management_menu" name="Paintball Management" />
 
     <menuitem id="paintball_configuration_menu" name="Configuration"
         sequence="20" parent="paintball_management_menu" />
@@ -15,21 +13,70 @@
         <field name="inherit_id" ref="product.product_normal_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='active']" position="after">
-                <field name="isamenity" />
+                <field name="iszone" />
             </xpath>
         </field>
     </record>
 
-  
- 
-
-
-    <!-- Form view of paintball amenity type -->
-    <record id="view_paintball_amenity_type_form" model="ir.ui.view">
-        <field name="name">paintball.amenity_type.form</field>
-        <field name="model">paintball.amenity.type</field>
+    <!-- ====== Company Configuration ====== -->
+    <record id="res_company_inherit_config_paintball" model="ir.ui.view">
+        <field name="name">res.company.inherit.config.paintball</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
-            <form string=" paintball amenity Type">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="additional_hours" />
+            </xpath>
+        </field>
+    </record>
+
+    <!--======== Area ======== -->
+    <!-- Form view of paintball area -->
+    <record id="view_paintball_area_form" model="ir.ui.view">
+        <field name="name">paintball.area.form</field>
+        <field name="model">paintball.area</field>
+        <field name="arch" type="xml">
+            <form string=" Paintball Area">
+                <sheet>
+                    <group>
+                        <field name="name" colspan="1" />
+                        <field name="sequence" invisible="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of paintball area -->
+    <record id="view_paintball_area_tree" model="ir.ui.view">
+        <field name="name">paintball.area.tree</field>
+        <field name="model">paintball.area</field>
+        <field name="arch" type="xml">
+            <tree string=" Paintball Areas">
+                <field name="sequence" widget="handle" />
+                <field name="name" colspan="1" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action of paintball area -->
+    <record id="open_paintball_area_form_tree" model="ir.actions.act_window">
+        <field name="name">Area</field>
+        <field name="res_model">paintball.area</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_open_paintball_area_form_tree" name="Area"
+        action="open_paintball_area_form_tree" sequence="21"
+        parent="paintball_configuration_menu" />
+
+    <!--======= Zone Type ======= -->
+    <!-- Form view of paintball zone type -->
+    <record id="view_paintball_zone_type_form" model="ir.ui.view">
+        <field name="name">paintball.zone_type.form</field>
+        <field name="model">paintball.zone.type</field>
+        <field name="arch" type="xml">
+            <form string=" Paintball Zone Type">
                 <sheet>
                     <group>
                         <field name="name" />
@@ -41,42 +88,183 @@
         </field>
     </record>
 
-    <!-- Tree view of paintball amenity type -->
-    <record id="view_paintball_amenity_type_tree" model="ir.ui.view">
-        <field name="name">paintball.amenity_type.tree</field>
-        <field name="model">paintball.amenity.type</field>
+    <!-- Tree view of paintball zone type -->
+    <record id="view_paintball_zone_type_tree" model="ir.ui.view">
+        <field name="name">paintball.zone_type.tree</field>
+        <field name="model">paintball.zone.type</field>
         <field name="arch" type="xml">
-            <tree string="paintball amenity Type">
+            <tree string="Paintball Zone Type">
                 <field name="name" />
             </tree>
         </field>
     </record>
 
-    <!-- Action for paintball amenity type -->
-    <record id="open_paintball_amenity_type_form_tree" model="ir.actions.act_window">
-        <field name="name">amenity Type</field>
-        <field name="res_model">paintball.amenity.type</field>
-        <field name="view_type">form</field>
+    <!-- Action for paintball zone type -->
+    <record id="open_paintball_zone_type_form_tree" model="ir.actions.act_window">
+        <field name="name">Zone Type</field>
+        <field name="res_model">paintball.zone.type</field>
         <field name="context">{}</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_paintball_amenity" name="amenity"
+    <menuitem id="menu_paintball_zone" name="Zone"
         parent="paintball.paintball_configuration_menu" sequence="2" />
-    <menuitem id="menu_open_paintball_amenity_type_form_tree" name="amenity Types"
-        action="open_paintball_amenity_type_form_tree" sequence="6"
-        parent="paintball.menu_paintball_amenity" />
+    <menuitem id="menu_open_paintball_zone_type_form_tree" name="Zone Types"
+        action="open_paintball_zone_type_form_tree" sequence="6"
+        parent="paintball.menu_paintball_zone" />
 
-  
-    <!-- ====== amenitys ====== -->
-    <!-- Form view of paintball amenity -->
-    <record id="view_paintball_amenity_form" model="ir.ui.view">
-        <field name="name">paintball.amenity.form</field>
-        <field name="model">paintball.amenity</field>
+    <!--==== Amenities Type ==== -->
+    <!-- Form view of paintball zone amenities type -->
+    <record id="view_paintball_zone_amenities_type_form" model="ir.ui.view">
+        <field name="name">paintball.zone_amenities_type_form</field>
+        <field name="model">paintball.zone.amenities.type</field>
         <field name="arch" type="xml">
-            <form string="paintball amenity">
+            <form string="Paintball Zone Amenities Type">
                 <sheet>
-                    <field name="image_medium" widget="image" class="oe_avatar" />
+                    <group>
+                        <field name="name" string="Amenity Type" />
+                        <field name="amenity_id" />
+                        <field name="child_ids" invisible="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of paintball zone amenities type -->
+    <record id="view_paintball_zone_amenities_type_list" model="ir.ui.view">
+        <field name="name">paintball.zone_amenities_type_list</field>
+        <field name="model">paintball.zone.amenities.type</field>
+        <field name="arch" type="xml">
+            <tree string="Paintball Zone Amenities Type">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for paintball zone amenities type -->
+    <record id="action_paintball_zone_amenities_type_view_form" model="ir.actions.act_window">
+        <field name="name">Amenities Type</field>
+        <field name="res_model">paintball.zone.amenities.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_amenity" name="Amenity"
+        parent="paintball.paintball_configuration_menu" sequence="2" />
+    <menuitem name="Amenity Types"
+        id="menu_action_paintball_zone_amenities_type_view_form" action="action_paintball_zone_amenities_type_view_form"
+        sequence="3" parent="paintball.menu_amenity" />
+
+    <!--===== Zone Amenities ===== -->
+    <!-- Form view of paintball zone amenities -->
+    <record id="view_paintball_zone_amenities_form" model="ir.ui.view">
+        <field name="name">paintball.zone.amenities.form</field>
+        <field name="model">paintball.zone.amenities</field>
+        <field name="arch" type="xml">
+            <form string="Paintball Zone Amenities">
+                <sheet>
+                    <label for="name" string="Name" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <notebook>
+                        <page string="Information">
+                            <group colspan="4" col="4">
+                                <field name="type" select="2" string="Amenity Type" />
+                                <field name="categ_id" string="Amenities Category" />
+                                <field name="product_manager" select="2" string="Amenity manager" />
+                                <field name="uom_id" />
+                                <field name="default_code" />
+                                <field name="uom_po_id" />
+                            </group>
+                            <newline />
+                            <separator colspan='4' string="Supplier Taxes" />
+                            <field name="supplier_taxes_id" colspan="4" nolabel='1'
+                                help='Define supplier taxes if there any on the ty. ' />
+                            <newline />
+                            <separator colspan='4' string="Customer Taxes" />
+                            <field name="taxes_id" colspan="4" nolabel='1'
+                                help='List of customer taxes applied on the ty. ' />
+                        </page>
+                        <page string="Procurement">
+                            <group colspan="4" col="4">
+                                <field name="active" select="2" />
+                                <field name="list_price" />
+                                <field name="cost_method" string="Cost Method" />
+                                <field name="sale_ok" select="2" />
+                                <field name="standard_price" />
+                                <field name="rental" select="2" />
+                            </group>
+                            <newline />
+                            <group>
+                                <separator string="Suppliers" />
+                                <field name="seller_ids" colspan="4" nolabel="1"
+                                    widget="one2many_list" />
+                            </group>
+                        </page>
+                        <page string="Descriptions">
+                            <separator string="Description" />
+                            <field name="description" colspan="4" nolabel="1" />
+                            <separator string="Sale Description" />
+                            <field name="description_sale" colspan="4" nolabel="1" />
+                            <separator string="Purchase Description" />
+                            <field name="description_purchase" colspan="4" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view of paintball zone amenities -->
+    <record id="view_paintball_zone_aenities_search" model="ir.ui.view">
+        <field name="name">paintball.zone_amenities_search</field>
+        <field name="model">paintball.zone.amenities</field>
+        <field name="arch" type="xml">
+            <search string="Paintball Zone Amenities">
+                <field name="name" />
+                <field name="categ_id" string="Amenities Category" />
+                <field name="list_price" string="Amenity rate" />
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view of paintball zone amenities -->
+    <record id="view_paintball_zone_amenities_list" model="ir.ui.view">
+        <field name="name">paintball.zone_amenities_list</field>
+        <field name="model">paintball.zone.amenities</field>
+        <field name="arch" type="xml">
+            <tree string="Paintball Zone Amenities">
+                <field name="name" />
+                <field name="categ_id" string="Amenities Category" />
+                <field name="list_price" string="Amenity Rate" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for paintball zone amenities -->
+    <record id="action_paintball_zone_amenities_view_form" model="ir.actions.act_window">
+        <field name="name">Amenities</field>
+        <field name="res_model">paintball.zone.amenities</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_iscategid':1,'default_available_in_pos':0}
+        </field>
+        <field name="view_id" ref="view_paintball_zone_amenities_list" />
+    </record>
+
+    <menuitem id="menu_action_paintball_zone_amenities_view_form"
+        name="Amenities" action="action_paintball_zone_amenities_view_form"
+        sequence="2" parent="paintball.menu_amenity" />
+
+    <!-- ====== Zones ====== -->
+    <!-- Form view of paintball zone -->
+    <record id="view_paintball_zone_form" model="ir.ui.view">
+        <field name="name">paintball.zone.form</field>
+        <field name="model">paintball.zone</field>
+        <field name="arch" type="xml">
+            <form string="Paintball Zone">
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar" />
                     <div class="oe_title">
                         <label for="name" string="Name" />
                         <h1>
@@ -87,30 +275,30 @@
                             <field name="status" readonly="1" />
                         </h2>
                         <h2>
-                            <field name="isamenity" />
+                            <field name="iszone" />
                         </h2>
                     </div>
                     <notebook>
-                        <page name="information_paintball_amenity" string="Information">
+                        <page name="information_paintball_zone" string="Information">
                             <group colspan="4" col="4">
-                                <field name="floor_id" string="Floor" />
+                                <field name="area_id" string="Area" />
                                 <field name="categ_id" select="1" />
-                                <field name="product_manager" select="2" string="amenity Manager" />
+                                <field name="product_manager" select="2" string="Zone Manager" />
                                 <field name="capacity" />
                                 <field name="uom_id" invisible="1" />
                             </group>
                             <newline />
                             <separator colspan='4' string="Supplier Taxes" />
                             <field name="supplier_taxes_id" colspan="4" nolabel='1'
-                                help='List of supplier taxes if there any on the defined amenity. ' />
+                                help='List of supplier taxes if there any on the defined zone. ' />
                             <newline />
                             <separator colspan='4' string="Customer Taxes" />
                             <field name="taxes_id" colspan="4" nolabel='1'
-                                help='Customer taxes apply on the perticular amenity. ' />
+                                help='Customer taxes apply on the perticular zone. ' />
                         </page>
-                        <page string="amenity Amenities">
-                            <separator string=" amenity Amenities" />
-                            <field name="amenity_amenities" colspan="4" nolabel="1" />
+                        <page string="Zone Amenities">
+                            <separator string=" Zone Amenities" />
+                            <field name="zone_amenities" colspan="4" nolabel="1" />
                         </page>
                         <page string="Procurement">
                             <group colspan="4" col="4">
@@ -132,12 +320,12 @@
                             <separator string="Description" />
                             <field name="description" colspan="4" nolabel="1" />
                         </page>
-                        <page string="Folio amenity Reservations">
-                            <separator colspan='4' string="Folio amenity Reservation Line" />
-                            <field name="amenity_line_ids" colspan="4" nolabel='1'>
-                                <form string=" amenity line">
+                        <page string="Folio Zone Reservations">
+                            <separator colspan='4' string="Folio Zone Reservation Line" />
+                            <field name="zone_line_ids" colspan="4" nolabel='1'>
+                                <form string=" Zone line">
                                     <group colspan='4' col='4'>
-                                        <field name="amenity_id" />
+                                        <field name="zone_id" />
                                         <field name="check_in" />
                                         <field name="check_out" />
                                         <field name="folio_id" />
@@ -145,7 +333,7 @@
                                     </group>
                                 </form>
                                 <tree>
-                                    <field name="amenity_id" />
+                                    <field name="zone_id" />
                                     <field name="check_in" />
                                     <field name="check_out" />
                                     <field name="folio_id" />
@@ -159,15 +347,15 @@
         </field>
     </record>
 
-    <!-- Search view of paintball amenity -->
-    <record id="view_paintball_amenity_search" model="ir.ui.view">
-        <field name="name">paintball.amenity.search</field>
-        <field name="model">paintball.amenity</field>
+    <!-- Search view of paintball zone -->
+    <record id="view_paintball_zone_search" model="ir.ui.view">
+        <field name="name">paintball.zone.search</field>
+        <field name="model">paintball.zone</field>
         <field name="arch" type="xml">
-            <search string="paintball amenity">
+            <search string="Paintball Zone">
                 <field name="name" filter_domain="[('name', 'ilike', self)]"/>
                 <field name="categ_id" />
-                <field name="list_price" string="amenity rate" />
+                <field name="list_price" string="Zone rate" />
                 <field name="status" string="Status" />
                 <newline />
                 <filter name="available" string="Available" domain="[('status','=', 'available')]"/>
@@ -176,24 +364,24 @@
         </field>
     </record>
 
-    <!-- Tree view of paintball amenity -->
-    <record id="view_paintball_amenity_tree" model="ir.ui.view">
-        <field name="name">paintball.amenity.tree</field>
-        <field name="model">paintball.amenity</field>
+    <!-- Tree view of paintball zone -->
+    <record id="view_paintball_zone_tree" model="ir.ui.view">
+        <field name="name">paintball.zone.tree</field>
+        <field name="model">paintball.zone</field>
         <field name="arch" type="xml">
-            <tree string="paintball amenity">
+            <tree string="Paintball Zone">
                 <field name="name" />
                 <field name="categ_id" />
-                <field name="list_price" string="amenity rate" />
+                <field name="list_price" string="Zone rate" />
                 <field name="status" />
                 <field name="capacity" />
             </tree>
         </field>
     </record>
 
-    <record id="view_paintball_amenity_kanban" model="ir.ui.view">
-        <field name="name">paintball.amenity.kanban</field>
-        <field name="model">paintball.amenity</field>
+    <record id="view_paintball_zone_kanban" model="ir.ui.view">
+        <field name="name">paintball.zone.kanban</field>
+        <field name="model">paintball.zone</field>
         <field name="arch" type="xml">
             <kanban default_group_by="status">
                 <field name="name" />
@@ -231,8 +419,8 @@
                                     <div class="oe_kanban_project_list">
                                         <H3>
                                             <a type="open">
-                                                <img alt="amenity_image"
-                                                    t-att-src="kanban_image('paintball.amenity', 'image_medium', record.id.value)"
+                                                <img alt="zone_image"
+                                                    t-att-src="kanban_image('paintball.zone', 'image_1920', record.id.value)"
                                                     style="height:70px;width:70px" class="oe_avatar oe_kanban_avatar_smallbox" />
                                                 <t t-if="record.code.raw_value" style="margin-right: 10px">
                                                     [
@@ -261,11 +449,11 @@
                                 </div>
                                 <div class="oe_kanban_bottom_right">
                                     <a t-if="record.status.raw_value === 'available'" type="object"
-                                        string="Available" name="set_amenity_status_occupied"
+                                        string="Available" name="set_zone_status_occupied"
                                         class="oe_kanban_status oe_kanban_status_green ">
                                     </a>
                                     <a t-if="record.status.raw_value === 'occupied'" type="object"
-                                        string="occupied" name="set_amenity_status_available"
+                                        string="occupied" name="set_zone_status_available"
                                         class="oe_kanban_status oe_kanban_status_red ">
                                     </a>
                                 </div>
@@ -278,26 +466,25 @@
         </field>
     </record>
 
-    <!-- Action for paintball amenity -->
-    <record id="action_paintball_amenity_form" model="ir.actions.act_window">
-        <field name="name">amenity</field>
-        <field name="res_model">paintball.amenity</field>
-        <field name="view_type">form</field>
-        <field name="context">{'default_isamenity':1,'default_rental':1,'default_available_in_pos':0}
+    <!-- Action for paintball zone -->
+    <record id="action_paintball_zone_form" model="ir.actions.act_window">
+        <field name="name">Zone</field>
+        <field name="res_model">paintball.zone</field>
+        <field name="context">{'default_iszone':1,'default_rental':1,'default_available_in_pos':0}
         </field>
-        <field name="view_id" ref="view_paintball_amenity_tree" />
+        <field name="view_id" ref="view_paintball_zone_tree" />
         <field name="view_mode">kanban,tree,form</field>
     </record>
 
-    <menuitem id="menu_open_paintball_amenity_form" name="amenitys"
-        action="action_paintball_amenity_form" sequence="5" parent="paintball.menu_paintball_amenity" />
+    <menuitem id="menu_open_paintball_zone_form" name="Zones"
+        action="action_paintball_zone_form" sequence="5" parent="paintball.menu_paintball_zone" />
 
     <!-- Form view of paintball folio -->
     <record id="view_paintball_folio_form" model="ir.ui.view">
         <field name="name">paintball.folio.form</field>
         <field name="model">paintball.folio</field>
         <field name="arch" type="xml">
-            <form string="paintball Folio">
+            <form string="Paintball Folio">
                 <header>
                     <button name="action_confirm" states="draft" string="Confirm Sale"
                         class="btn-primary" type="object" />
@@ -312,7 +499,7 @@
                         icon="fa-close" type="object" class="oe_highlight" />
                     <button name="action_done" type="object" string="Set to Done"
                         states="sale" class="oe_highlight"
-                        help="If a paintball Folio is done, you cannot modify it manually anymore. However, you will still be able to invoice or deliver. This is used to freeze the paintball Folio." />
+                        help="If a Paintball Folio is done, you cannot modify it manually anymore. However, you will still be able to invoice or deliver. This is used to freeze the Paintball Folio." />
                     <field name="state" select="2" widget="statusbar"
                         statusbar_visible="draft,sent,sale,done" />
                 </header>
@@ -326,6 +513,7 @@
                         <field name="warehouse_id" string="Branch" />
                         <field name="invoice_status" />
                         <field name="paintball_invoice_id" states='sale,done,cancel' readonly="1" />
+                          <field name="company_id" invisible="1"/>
                     </group>
                     <notebook>
                         <page name="folio" string="Folio">
@@ -342,10 +530,10 @@
                                 <field name="duration" readonly="1" />
                                 <field name="duration_dummy" invisible="1" />
                             </group>
-                            <separator string="amenity Lines" colspan="4" />
-                            <field name="amenity_lines" colspan="4" string="amenity Line" nolabel="1"
+                            <separator string="Zone Lines" colspan="4" />
+                            <field name="zone_lines" colspan="4" string="Zone Line" nolabel="1"
                                 context="{'checkin':checkin_date,'checkout':checkout_date,'folio':context.get('folio')}">
-                                <form string="amenity Line">
+                                <form string="Zone Line">
                                     <notebook>
                                         <page name="folio_name" string="Folio Line">
                                             <group col="6" colspan="4">
@@ -358,8 +546,9 @@
                                                     invisible="1" />
                                                 <field name="product_id"
                                                     context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'uom':product_uom}"
-                                                    domain="[('isamenity','=',True)]" string="amenity No" />
+                                                    domain="[('iszone','=',True)]" string="Zone No" />
                                                 <field name="product_uom" string="Rent(UOM)" />
+                                                <field name="product_uom_category_id" invisible="1"/>
                                             </group>
                                             <separator string="Manual Description" colspan="4" />
                                             <field name="name" colspan="4" select="2"
@@ -372,6 +561,7 @@
                                                 <separator string="States" colspan="4" />
                                                 <field name="state" select="2" />
                                                 <field name="invoice_status" />
+                                                <field name="company_id" invisible="1"/>
                                             </group>
                                         </page>
 
@@ -381,15 +571,17 @@
                                         </page>
                                     </notebook>
                                 </form>
-                                <tree string="amenity Line">
+                                <tree string="Zone Line">
                                     <field name="name" />
                                     <field name="checkin_date" />
                                     <field name="checkout_date" />
-                                    <field name="product_id" string="amenity No" />
+                                    <field name="product_id" string="Zone Name" />
                                     <field name="product_uom" string="Rent(UOM)" />
                                     <field name="price_unit" string="Rent" />
                                     <field name="price_subtotal" />
                                     <field name="state" />
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                     <field name="company_id" invisible="1"/>
                                 </tree>
                             </field>
                             <separator string="Service Lines" colspan="4" />
@@ -408,9 +600,11 @@
                                                 <field name="product_id" domain="[('isservice','=',True)]"
                                                     context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'paintball':parent.warehouse_id,'uom':product_uom}" />
                                                 <field name="product_uom" />
+                                                <field name="product_uom_category_id" invisible="1"/>
                                                 <field name="product_uom_qty"
                                                     context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'paintball':parent.warehouse_id,'uom':product_uom}"
                                                     invisible="1" />
+                                                 <field name="company_id" invisible="1"/>
                                             </group>
                                             <separator string="Manual Description" colspan="4" />
                                             <field name="name" colspan="4" select="2" placeholder="Description" />
@@ -440,6 +634,7 @@
                                     <field name="price_unit" />
                                     <field name="price_subtotal" />
                                     <field name="state" />
+                                      <field name="company_id" invisible="1"/>
                                 </tree>
                             </field>
                             <group colspan="2" class="oe_subtotal_footer oe_right">
@@ -475,7 +670,7 @@
         <field name="name">paintball.folio.tree</field>
         <field name="model">paintball.folio</field>
         <field name="arch" type="xml">
-            <tree string="paintball Folio" colors="blue:state == 'draft';gray:state == 'done'">
+            <tree string="Paintball Folio" decoration-muted="state == 'done'" decoration-bf="state == 'draft'" >
                 <field name="checkin_date" />
                 <field name="checkout_date" />
                 <field name="name" />
@@ -489,7 +684,7 @@
 
     <!-- Calendar view of paintball folio -->
     <record id="paintball_folio_calendar_view" model="ir.ui.view">
-        <field name="name">paintball- Folios Calendar</field>
+        <field name="name">Paintball- Folios Calendar</field>
         <field name="model">paintball.folio</field>
         <field name="arch" type="xml">
             <calendar string="Folios" date_start="checkin_date" color="user_id"
@@ -535,7 +730,6 @@
     <record id="open_paintball_folio1_form_tree_all" model="ir.actions.act_window">
         <field name="name">Generate Folio</field>
         <field name="res_model">paintball.folio</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,calendar,graph</field>
         <field name="context">{'folio': True}</field>
     </record>
@@ -545,7 +739,7 @@
     <menuitem name="Generate Folio" id="menu_open_paintball_folio1_form_tree_all"
         action="open_paintball_folio1_form_tree_all" sequence="5" parent="menu_all_folio" />
 
-    <!--============ paintball Service Type ============ -->
+    <!--============ Paintball Service Type ============ -->
     <!-- Form view of paintball service type -->
     <record id="view_paintball_service_type_form" model="ir.ui.view">
         <field name="name">paintball.service_type.form</field>
@@ -578,7 +772,6 @@
     <record id="open_paintball_service_type_form_tree" model="ir.actions.act_window">
         <field name="name">Service Type</field>
         <field name="res_model">paintball.service.type</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -588,13 +781,13 @@
         action="open_paintball_service_type_form_tree" sequence="9"
         parent="paintball.menu_paintball_service" />
 
-    <!--============ paintball Service ============ -->
+    <!--============ Paintball Service ============ -->
     <!-- Form view of paintball service -->
     <record id="view_paintball_services_form" model="ir.ui.view">
         <field name="name">.paintball.services.form</field>
         <field name="model">paintball.services</field>
         <field name="arch" type="xml">
-            <form string="paintball Services">
+            <form string="Paintball Services">
                 <sheet>
                     <label for="name" string="Name" />
                     <h1>
@@ -656,7 +849,7 @@
         <field name="name">paintball.services.search</field>
         <field name="model">paintball.services</field>
         <field name="arch" type="xml">
-            <search string="paintball Services">
+            <search string="Paintball Services">
                 <field name="name" />
                 <field name="categ_id" string="Service Category" />
                 <field name="list_price" string="Service rate" />
@@ -670,7 +863,7 @@
         <field name="name">paintball.services.tree</field>
         <field name="model">paintball.services</field>
         <field name="arch" type="xml">
-            <tree string="paintball Services">
+            <tree string="Paintball Services">
                 <field name="name" />
                 <field name="categ_id" string="Service Category" />
                 <field name="list_price" string="Service rate" />
@@ -682,7 +875,6 @@
     <record id="action_paintball_services_form" model="ir.actions.act_window">
         <field name="name">Services</field>
         <field name="res_model">paintball.services</field>
-        <field name="view_type">form</field>
         <field name="context">{'default_isservice':1,'default_available_in_pos':0}
         </field>
         <field name="view_mode">tree,form</field>
@@ -692,6 +884,4 @@
         action="action_paintball_services_form" sequence="8"
         parent="paintball.menu_paintball_service" />
 
-</odoo>
- 
 </odoo>
