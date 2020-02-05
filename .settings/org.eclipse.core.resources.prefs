@@ -3,3 +3,5 @@ encoding//paintball/__init__.py=utf-8
 encoding//paintball/__manifest__.py=utf-8
 encoding//paintball/models/__init__.py=utf-8
 encoding//paintball/models/paintball.py=utf-8
+encoding//paintball_reservation/__manifest__.py=utf-8
+encoding//paintball_reservation/models/__init__.py=utf-8

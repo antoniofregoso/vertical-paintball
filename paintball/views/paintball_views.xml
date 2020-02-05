@@ -670,7 +670,7 @@
         <field name="name">paintball.folio.tree</field>
         <field name="model">paintball.folio</field>
         <field name="arch" type="xml">
-            <tree string="Paintball Folio" decoration-muted="state == 'done'" decoration-bf="state == 'draft'" >
+            <tree string="Paintball Folio" decoration-info="state=='draft'" decoration-muted = "state=='cancel'" decoration-success="state=='done'">
                 <field name="checkin_date" />
                 <field name="checkout_date" />
                 <field name="name" />
