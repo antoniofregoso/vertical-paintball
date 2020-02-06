@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-05 19:42+0000\n"
-"PO-Revision-Date: 2020-02-05 13:50-0600\n"
+"PO-Revision-Date: 2020-02-05 23:02-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "Language: es_MX\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: paintball
 #: model:ir.model.fields,field_description:paintball.field_paintball_services__product_variant_count
@@ -1723,28 +1723,28 @@ msgstr ""
 #. module: paintball
 #: model_terms:ir.ui.view,arch_db:paintball.view_paintball_area_form
 msgid "Paintball Area"
-msgstr ""
+msgstr "Area Gotcha"
 
 #. module: paintball
 #: model_terms:ir.ui.view,arch_db:paintball.view_paintball_area_tree
 msgid "Paintball Areas"
-msgstr ""
+msgstr "Areas Gotcha"
 
 #. module: paintball
 #: model_terms:ir.ui.view,arch_db:paintball.view_paintball_folio_form
 #: model_terms:ir.ui.view,arch_db:paintball.view_paintball_folio_tree
 msgid "Paintball Folio"
-msgstr ""
+msgstr "Filio Gotcha"
 
 #. module: paintball
 #: model:ir.ui.menu,name:paintball.paintball_management_menu
 msgid "Paintball Management"
-msgstr ""
+msgstr "Gestión Gotcha"
 
 #. module: paintball
 #: model:res.groups,name:paintball.group_paintball_user
 msgid "Paintball Management / User"
-msgstr ""
+msgstr "Gestión Gotcha/ Usuario"
 
 #. module: paintball
 #: model:res.groups,name:paintball.group_paintball_manager
