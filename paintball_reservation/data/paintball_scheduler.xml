@@ -1,8 +1,8 @@
 <odoo>
     <!-- Scheduler For Hotel Room -->
     <record model="ir.cron" id="zone_analytic_cron">
-        <field name="name">Room Analysis</field>
-        <field name="model_id" ref="model_hotel_zone"/>
+        <field name="name">Zone Analysis</field>
+        <field name="model_id" ref="model_paintball_zone"/>
         <field name="code">model.cron_zone_line()</field>
         <field name="interval_number">1</field>
         <field name="interval_type">minutes</field>
@@ -14,7 +14,7 @@
     <record model="ir.cron" id="Guest_reservation_reminder_24hrs">
         <field name="name">Inform Guest About Reservation Before 24 Hours
         </field>
-        <field name="model_id" ref="model_hotel_reservation"/>
+        <field name="model_id" ref="model_paintball_reservation"/>
         <field name="code">model.reservation_reminder_24hrs()</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>

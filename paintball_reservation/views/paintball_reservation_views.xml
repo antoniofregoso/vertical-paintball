@@ -40,7 +40,7 @@
                         </group>
                         <separator />
                         <group colspan="4" col="4">
-                            <field name="partner_id" domain="[('customer','=',True)]" />
+                            <field name="partner_id"  />
                             <field name="pricelist_id" col="2" />
                             <field name="partner_order_id" domain="[('parent_id','=',partner_id)]" />
                             <newline />

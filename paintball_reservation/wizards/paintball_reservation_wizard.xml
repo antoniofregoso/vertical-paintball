@@ -2,10 +2,10 @@
 <!DOCTYPE xml>
 <odoo>
 
-    <!--Form view for hotel reservation wizard -->
-    <record id="hotel_reservation_wizard_form_view" model="ir.ui.view">
-        <field name="name">hotel.reservation.wizard.form</field>
-        <field name="model">hotel.reservation.wizard</field>
+    <!--Form view for paintball reservation wizard -->
+    <record id="paintball_reservation_wizard_form_view" model="ir.ui.view">
+        <field name="name">paintball.reservation.wizard.form</field>
+        <field name="model">paintball.reservation.wizard</field>
         <field name="arch" type="xml">
             <form string="Reservation List">
                 <group col="4">
@@ -27,11 +27,10 @@
         </field>
     </record>
 
-    <!--Action for hotel reservation wizard -->
-    <record id="action_hotel_reservation_wizard" model="ir.actions.act_window">
-        <field name="name">Hotel Reservation Report</field>
-        <field name="res_model">hotel.reservation.wizard</field>
-        <field name="view_type">form</field>
+    <!--Action for paintball reservation wizard -->
+    <record id="action_paintball_reservation_wizard" model="ir.actions.act_window">
+        <field name="name">Paintball Reservation Report</field>
+        <field name="res_model">paintball.reservation.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
@@ -59,12 +58,11 @@
                 name="Make Folios"
                 key2="client_action_multi"
                 res_model="wizard.make.folio"
-                src_model="hotel.reservation"
+                src_model="paintball.reservation"
                 view_mode="form"
-                target="new"
-                view_type="form" />
+                target="new"/>
 
-    <menuitem id="wizard_res_menu" name="Hotel Reservation Report" action="action_hotel_reservation_wizard"
-        parent="hotel.hotel_report_menu" sequence="28" />
+    <menuitem id="wizard_res_menu" name="Paintball Reservation Report" action="action_paintball_reservation_wizard"
+        parent="paintball.paintball_report_menu" sequence="28" />
 
 </odoo>
