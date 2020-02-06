@@ -3,7 +3,7 @@
 <odoo>
 
     <!--Template for Hotel Reservation -->
-    <template id="report_maxroom_qweb">
+    <template id="report_maxzone_qweb">
         <t t-call="web.html_container">
                 <t t-call="web.external_layout">
                     <div class="page">
@@ -34,7 +34,7 @@
                                 </td>
                             </tr>
 
-                            <tr t-foreach="get_room_used_detail" t-as="line"
+                            <tr t-foreach="get_zone_used_detail" t-as="line"
                                 class="table table-condensed">
                                 <td>
                                     <span t-esc="line.get('name','')" />

@@ -2,40 +2,40 @@
 <!DOCTYPE xml>
 <odoo>
 
-    <!--Report for hotel check-in details -->
-    <report id="hotel_checkin_details"
+    <!--Report for paintball check-in details -->
+    <report id="paintball_checkin_details"
             string="CheckIn Detail"
-            model="hotel.reservation"
+            model="paintball.reservation"
             report_type="qweb-pdf"
-            file="hotel_reservation.report_checkin_qweb"
-            name="hotel_reservation.report_checkin_qweb"
+            file="paintball_reservation.report_checkin_qweb"
+            name="paintball_reservation.report_checkin_qweb"
             menu="False" />
 
-    <!--Report for hotel room reservation details -->
-    <report id="hotel_roomres_details"
+    <!--Report for paintball zone reservation details -->
+    <report id="paintball_zoneres_details"
             string="Room Reservation Detail"
-            model="hotel.reservation"
+            model="paintball.reservation"
             report_type="qweb-pdf"
-            file="hotel_reservation.report_roomres_qweb"
-            name="hotel_reservation.report_roomres_qweb"
+            file="paintball_reservation.report_zoneres_qweb"
+            name="paintball_reservation.report_zoneres_qweb"
             menu="False" />
 
-    <!--Report for hotel check-out details -->
-    <report id="hotel_checkout_details"
+    <!--Report for paintball check-out details -->
+    <report id="paintball_checkout_details"
             string="CheckOut Detail"
-            model="hotel.reservation"
+            model="paintball.reservation"
             report_type="qweb-pdf"
-            file="hotel_reservation.report_checkout_qweb"
-            name="hotel_reservation.report_checkout_qweb"
+            file="paintball_reservation.report_checkout_qweb"
+            name="paintball_reservation.report_checkout_qweb"
             menu="False" />
 
-    <!--Report for hotel Maximum used room details -->
-    <report id="hotel_maxroom_details"
+    <!--Report for paintball Maximum used zone details -->
+    <report id="paintball_maxzone_details"
             string="MaxRoom Detail"
-            model="hotel.reservation"
+            model="paintball.reservation"
             report_type="qweb-pdf"
-            file="hotel_reservation.report_maxroom_qweb"
-            name="hotel_reservation.report_maxroom_qweb"
+            file="paintball_reservation.report_maxzone_qweb"
+            name="paintball_reservation.report_maxzone_qweb"
             menu="False" />
 
 </odoo>

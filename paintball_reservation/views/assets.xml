@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE xml>
+<odoo>
+
+    <template id="assets_backend_" name="Quick Reservation Summary"
+        inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/paintball_reservation/static/src/css/zone_summary.css" />
+            <script type="text/javascript"
+                src="/paintball_reservation/static/src/js/paintball_zone_summary.js"></script>
+        </xpath>
+    </template>
+
+</odoo>
