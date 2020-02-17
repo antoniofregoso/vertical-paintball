@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_paintball"
+            string="Folio"
+            model="paintball.folio" 
+            report_type="qweb-pdf"
+            file="paintball.report_folio" 
+            name="paintball.report_folio"
+            print_report_name="(object.state in ('draft', 'sent') and 'Folio - %s' % (object.name))"
+        />
+    
+    </data>
+</odoo>

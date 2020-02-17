@@ -1,9 +1,17 @@
 <odoo noupdate="1">
 
-    <!-- Sequences for hotel folio -->
+    <!-- Sequences for paintball folio -->
     <record id="seq_paintball_folio" model="ir.sequence">
         <field name="name">Paintball Folio</field>
         <field name="code">paintball.folio</field>
+        <field name="prefix">Folio/</field>
+        <field name="padding">5</field>
+    </record>
+    
+        <!-- Sequences for paintball shooters -->
+    <record id="seq_paintball_shooter_team" model="ir.sequence">
+        <field name="name">Shooter Team Folio</field>
+        <field name="code">paintball.shooter_team</field>
         <field name="prefix">Folio/</field>
         <field name="padding">5</field>
     </record>

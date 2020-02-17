@@ -6,6 +6,8 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.osv import expression
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo import api, fields, models, _
+import logging
+_logger = logging.getLogger(__name__)
 
 
 def _offset_format_timestamp1(src_tstamp_str, src_format, dst_format,
@@ -128,6 +130,8 @@ class ProductProduct(models.Model):
     iszone = fields.Boolean('Is Zone')
     iscategid = fields.Boolean('Is Categ')
     isservice = fields.Boolean('Is Service')
+    
+
 
 
 class PaintballZoneAmenitiesType(models.Model):
@@ -394,7 +398,7 @@ class PaintballFolio(models.Model):
     paintball_invoice_id = fields.Many2one('account.move', 'Invoice',
                                        copy=False)
     duration_dummy = fields.Float('Duration Dummy')
-
+    
     @api.constrains('zone_lines')
     def folio_zone_lines(self):
         '''
@@ -1093,6 +1097,40 @@ class ResCompany(models.Model):
                                       check in, checkout days, whatever the \
                                       hours will be provided here based on \
                                       that extra days will be calculated.")
+    
+class ShooterTeam(models.Model):
+    _name = 'paintball.shooter_team'
+    _description = 'Paintball Shooter Team'
+    
+    name = fields.Char(string='Team Reference', required=True, copy=False, readonly=True, states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('done', 'Locked'),
+        ('cancel', 'Cancelled'),
+        ], string='Status', readonly=True, copy=False, index=True,  default='draft')
+    user_id = fields.Many2one(
+        'res.users', string='Salesperson', index=True,  default=lambda self: self.env.user)
+    partner_id = fields.Many2one(
+        'res.partner', string='Team Leader', readonly=True,
+        states={'draft': [('readonly', False)]},
+        required=True, change_default=True, index=True, tracking=1,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",)
+    company_id = fields.Many2one('res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
+    shooter_ids = fields.Many2many('res.partner', 'paintball_shooter_team_res_partner_rel', 'shooter_team_id', 'partner_id', string='Shooter', readonly=True, states={'draft': [('readonly', False)]})
+    folio_id = fields.Many2one('paintball.folio', string = 'Folio', readonly=True, states={'draft': [('readonly', False)]})
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            if 'company_id' in vals:
+                vals['name'] = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('paintball.shooter_team') or _('New')
+            else:
+                vals['name'] = self.env['ir.sequence'].next_by_code('paintball.shooter_team') or _('New')
+        result = super(ShooterTeam, self).create(vals)
+        return result
+    
+
+    
 
 
 class AccountMove(models.Model):
@@ -1107,3 +1145,8 @@ class AccountMove(models.Model):
             folio.write({'paintball_invoice_id': res.id,
                          'invoice_status': 'invoiced'})
         return res
+    
+
+         
+    
+    

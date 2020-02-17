@@ -15,6 +15,7 @@ access_paintball_order_user,paintball.order.user,sale.model_sale_order,paintball
 access_paintball_order_line_user,paintball.order.line.user,sale.model_sale_order_line,paintball.group_paintball_user,1,1,1,0
 access_paintball_invoice_user,account.invoice.user,account.model_account_move,paintball.group_paintball_user,1,1,1,0
 access_folio_zone_line_user,paintball.folio_zone_line.user,model_folio_zone_line,paintball.group_paintball_user,1,1,1,1
+access_model_shooter_team_user,paintball.model_shooter_team.user,model_paintball_shooter_team,paintball.group_paintball_user,1,1,1,1
 access_paintball_area_group_manager,paintball.area.manager,model_paintball_area,paintball.group_paintball_manager,1,1,1,1
 access_product_category_manager,product.category.manager,product.model_product_category,paintball.group_paintball_manager,1,1,1,1
 access_paintball_zone_type_manager,paintball.zone_type.manager,model_paintball_zone_type,paintball.group_paintball_manager,1,1,1,1
@@ -31,3 +32,4 @@ access_paintball_order_manager_manager,paintball.order.manager,sale.model_sale_o
 access_paintball_order_line_manager,paintball.order.line.manager,sale.model_sale_order_line,paintball.group_paintball_manager,1,1,1,0
 access_paintball_invoice_manager,account.invoice.manager,account.model_account_move,paintball.group_paintball_manager,1,1,1,1
 access_folio_zone_line_manager,paintball.folio_zone_line.manager,model_folio_zone_line,paintball.group_paintball_manager,1,1,1,1
+access_model_shooter_team_manager,paintball.model_shooter_team.manager,model_paintball_shooter_team,paintball.group_paintball_manager,1,1,1,1

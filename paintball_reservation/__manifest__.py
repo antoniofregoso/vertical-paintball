@@ -24,7 +24,9 @@
         #'wizards/paintball_reservation_wizard.xml',
         
     ],
-    # only loaded in demonstration mode
+    'qweb': [
+        "static/src/xml/paintball_zone_summary.xml",
+    ],
     'demo': [
         'demo/demo.xml',
     ],
