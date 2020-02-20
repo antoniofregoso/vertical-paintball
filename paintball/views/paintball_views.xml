@@ -1,6 +1,6 @@
 <odoo>
 
-    <menuitem id="paintball_management_menu" name="Paintball Management" />
+    <menuitem id="paintball_management_menu" name="Paintball Management" web_icon="paintball,static/description/icon.png"/>
 
     <menuitem id="paintball_configuration_menu" name="Configuration"
         sequence="20" parent="paintball_management_menu" />
@@ -277,50 +277,30 @@
                         <h2>
                             <field name="iszone" />
                         </h2>
-                    </div>
-                    <notebook>
-                        <page name="information_paintball_zone" string="Information">
-                            <group colspan="4" col="4">
+                    </div>                  
+                            <group >
+                            <group>
                                 <field name="area_id" string="Area" />
                                 <field name="categ_id" select="1" />
                                 <field name="product_manager" select="2" string="Zone Manager" />
+                              </group>
+                              <group>
+                              	<field name="warehouse_id" />
+                                <field name="capacity_min" />
                                 <field name="capacity" />
                                 <field name="uom_id" invisible="1" />
+                                </group>
                             </group>
-                            <newline />
-                            <separator colspan='4' string="Supplier Taxes" />
-                            <field name="supplier_taxes_id" colspan="4" nolabel='1'
-                                help='List of supplier taxes if there any on the defined zone. ' />
-                            <newline />
-                            <separator colspan='4' string="Customer Taxes" />
-                            <field name="taxes_id" colspan="4" nolabel='1'
-                                help='Customer taxes apply on the perticular zone. ' />
-                        </page>
+                    <notebook>
                         <page string="Zone Amenities">
                             <separator string=" Zone Amenities" />
                             <field name="zone_amenities" colspan="4" nolabel="1" />
                         </page>
-                        <page string="Procurement">
-                            <group colspan="4" col="4">
-                                <field name="active" select="2" />
-                                <field name="list_price" />
-                                <field name="rental" select="2" />
-                                <field name="standard_price" />
-                                <field name="cost_method" string="Cost Method" />
-                                <newline />
-                            </group>
-                            <newline />
-                            <group>
-                                <separator string="Suppliers" />
-                                <field name="seller_ids" colspan="4" nolabel="1"
-                                    widget="one2many_list" />
-                            </group>
-                        </page>
-                        <page string="Descriptions">
+                        <page string="Descriptions" name="zone_description">
                             <separator string="Description" />
                             <field name="description" colspan="4" nolabel="1" />
                         </page>
-                        <page string="Folio Zone Reservations">
+                        <page string="Folios">
                             <separator colspan='4' string="Folio Zone Reservation Line" />
                             <field name="zone_line_ids" colspan="4" nolabel='1'>
                                 <form string=" Zone line">
@@ -340,6 +320,32 @@
                                     <field name="status" />
                                 </tree>
                             </field>
+                        </page>
+                        <page string="Procurement">
+                            <group colspan="4" col="4">
+                                <field name="active" select="2" />
+                                <field name="list_price" />
+                                <field name="rental" select="2" />
+                                <field name="standard_price" />
+                                <field name="cost_method" string="Cost Method" />
+                                <newline />
+                            </group>
+                            <newline />
+                            <group>
+                                <separator string="Suppliers" />
+                                <field name="seller_ids" colspan="4" nolabel="1"
+                                    widget="one2many_list" />
+                            </group>
+                        </page>
+                        <page name="information_paintball_zone" string="Information">
+                            <newline />
+                            <separator colspan='4' string="Supplier Taxes" />
+                            <field name="supplier_taxes_id" colspan="4" nolabel='1'
+                                help='List of supplier taxes if there any on the defined zone. ' />
+                            <newline />
+                            <separator colspan='4' string="Customer Taxes" />
+                            <field name="taxes_id" colspan="4" nolabel='1'
+                                help='Customer taxes apply on the perticular zone. ' />
                         </page>
                     </notebook>
                 </sheet>

@@ -26,4 +26,7 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': True,
+    'application': True,
+    'auto_install': False
 }

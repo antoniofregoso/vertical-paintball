@@ -11,9 +11,11 @@
         </t>
          <div class="page">
             <div class="oe_structure"/>
-            <h1>Confirmación de Reservación de Invitados</h1>
-            <h2>¡VERIFICA LA INFORMACIÓN ANTES DE IMPRIMIR!</h2>
-            <h2>No se aceptan reclamaciones o cambios en parque a la información aquí contenida</h2>
+            <div class="bg-warning">
+	            <h1>Confirmación de Reservación de Invitados</h1>
+	            <h2>¡VERIFICA LA INFORMACIÓN ANTES DE IMPRIMIR!</h2>
+	            <h2>No se aceptan reclamaciones o cambios en parque a la información aquí contenida</h2>
+            </div>
             <h2 class="mt16">Clave reservación<span t-field="doc.name"/></h2>
             <div class="row mt32 mb32" id="informations">
             <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">

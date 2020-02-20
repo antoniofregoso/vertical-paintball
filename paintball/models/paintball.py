@@ -236,7 +236,8 @@ class PaintballZone(models.Model):
     status = fields.Selection([('available', 'Available'),
                                ('occupied', 'Occupied')],
                               'Status', default='available')
-    capacity = fields.Integer('Capacity', required=True)
+    capacity = fields.Integer('Max Capacity', required=True)
+    capacity_min = fields.Integer('Min Capacity', required=True)
     zone_line_ids = fields.One2many('folio.zone.line', 'zone_id',
                                     string='Zone Reservation Line')
     product_manager = fields.Many2one('res.users', 'Product Manager')
@@ -398,6 +399,9 @@ class PaintballFolio(models.Model):
     paintball_invoice_id = fields.Many2one('account.move', 'Invoice',
                                        copy=False)
     duration_dummy = fields.Float('Duration Dummy')
+    warehouse_id = fields.Many2one(
+        'stock.warehouse', string='Warehouse',
+        required=True, readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
     
     @api.constrains('zone_lines')
     def folio_zone_lines(self):

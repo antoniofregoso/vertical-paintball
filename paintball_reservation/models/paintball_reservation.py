@@ -516,7 +516,7 @@ class PaintballReservation(models.Model):
                 'checkout_date': reservation.checkout,
                 'duration': duration,
                 'reservation_id': reservation.id,
-                'service_lines': reservation['folio_id']
+                #'service_lines': reservation['folio_id']
             }
             for line in reservation.reservation_line:
                 for r in line.reserve:

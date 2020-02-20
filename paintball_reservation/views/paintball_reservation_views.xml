@@ -171,7 +171,7 @@
         <field name="model">paintball.zone</field>
         <field name="inherit_id" ref="paintball.view_paintball_zone_form" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='information_paintball_zone']" position="after">
+            <xpath expr="//page[@name='zone_description']" position="after">
                 <page name="zone_reservation" string="Zone Reservation">
                     <separator colspan='4' string="Zone Reservation Line" />
                     <field name="zone_reservation_line_ids" colspan="4" nolabel='1'
