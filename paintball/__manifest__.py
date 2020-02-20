@@ -10,7 +10,7 @@
     'website': "https://antoniofregoso.com",
     'category': 'Paintball',
     'version': '13.0.0.0.0',
-    'depends': ['sale_stock', 'point_of_sale'],
+    'depends': ['sale_stock'],
     'license': 'AGPL-3',
     
 
