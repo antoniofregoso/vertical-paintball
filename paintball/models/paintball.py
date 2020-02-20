@@ -553,15 +553,7 @@ class PaintballFolio(models.Model):
                     folio_romline_rec.write(zone_vals)
         return super(PaintballFolio, self).write(vals)
 
-    @api.onchange('warehouse_id')
-    def onchange_warehouse_id(self):
-        '''
-        When you change warehouse it will update the warehouse of
-        the paintball folio as well
-        ----------------------------------------------------------
-        @param self: object pointer
-        '''
-        return self.order_id._onchange_warehouse_id()
+
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
