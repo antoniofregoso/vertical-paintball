@@ -285,7 +285,6 @@
                                 <field name="product_manager" select="2" string="Zone Manager" />
                               </group>
                               <group>
-                              	<field name="warehouse_id" />
                                 <field name="capacity_min" />
                                 <field name="capacity" />
                                 <field name="uom_id" invisible="1" />
@@ -809,7 +808,6 @@
                                     <field name="uom_id" />
                                     <field name="default_code" />
                                     <field name="uom_po_id" />
-                                    <field name="warehouse_id" />
                                 </group>
                             </group>
                             <newline />
