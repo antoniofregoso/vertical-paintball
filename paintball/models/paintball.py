@@ -241,7 +241,8 @@ class PaintballZone(models.Model):
     zone_line_ids = fields.One2many('folio.zone.line', 'zone_id',
                                     string='Zone Reservation Line')
     product_manager = fields.Many2one('res.users', 'Product Manager')
-
+    warehouse_id = fields.Many2one( 'stock.warehouse', string='Warehouse')
+    
     @api.constrains('capacity')
     def check_capacity(self):
         for zone in self:
