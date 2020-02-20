@@ -1083,6 +1083,7 @@ class PaintballServices(models.Model):
     categ_id = fields.Many2one('paintball.service.type', string='Service Category',
                                required=True)
     product_manager = fields.Many2one('res.users', string='Product Manager')
+    warehouse_id = fields.Many2one( 'stock.warehouse', string='Warehouse')
 
 
 class ResCompany(models.Model):

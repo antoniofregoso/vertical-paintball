@@ -809,6 +809,7 @@
                                     <field name="uom_id" />
                                     <field name="default_code" />
                                     <field name="uom_po_id" />
+                                    <field name="warehouse_id" />
                                 </group>
                             </group>
                             <newline />
