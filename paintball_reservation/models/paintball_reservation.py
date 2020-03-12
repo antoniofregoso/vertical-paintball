@@ -176,6 +176,11 @@ class PaintballReservation(models.Model):
                                 'order_id', 'invoice_id', string='Folio')
     no_of_folio = fields.Integer('No. Folio', compute="_compute_folio_id")
     dummy = fields.Datetime('Dummy')
+    
+    def _compute_checkout(self):
+        dt =  self.checkin + datetime.timedelta(days=1)
+        checkout = datetime(dt.year, dt.month, dt.day, 0,0,0)
+        return checkout
 
     def _compute_folio_id(self):
         folio_list = []

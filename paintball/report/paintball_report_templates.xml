@@ -12,9 +12,9 @@
          <div class="page">
             <div class="oe_structure"/>
             <div class="bg-warning">
-	            <h1>Confirmación de Reservación de Invitados</h1>
-	            <h2>¡VERIFICA LA INFORMACIÓN ANTES DE IMPRIMIR!</h2>
-	            <h2>No se aceptan reclamaciones o cambios en parque a la información aquí contenida</h2>
+	            <h4>Confirmación de Reservación de Invitados</h4>
+	            <h4>¡VERIFICA LA INFORMACIÓN ANTES DE IMPRIMIR!</h4>
+	            <h4>No se aceptan reclamaciones o cambios en parque a la información aquí contenida</h4>
             </div>
             <h2 class="mt16">Clave reservación<span t-field="doc.name"/></h2>
             <div class="row mt32 mb32" id="informations">
